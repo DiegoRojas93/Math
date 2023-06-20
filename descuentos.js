@@ -6,31 +6,33 @@ const D = document,
 
 btn.addEventListener('click', calcularPrecioConDescuento)
 
-function calcular () {
+function descuento () {
     const newPrice = (price.value * ( 100 - this.discount )) / 100;
 
-    P.innerText=`El nuevo precio es: ${newPrice} debido a que su descuento del copon es de ${this.discount}%`
+    P.innerText=`El nuevo precio es: ${newPrice} debido a que su descuento del cupon es de ${this.discount}%`
 }
 
 const parameters = [
     {
         id: "JuanDC_es_Batman",
         discount: 30,
-        calcular
     },
     {
         id: "no_le_digas_a_nadie",
         discount: 25,
-        calcular
     }
 ]
 
 function calcularPrecioConDescuento() {
 
-    console.log(coupon.value);
+    if ( !coupon.value || !price.value ) {
+        P.innerText=`Completa todos los parametros para hacer el calculo`
+        return
+    }
 
+    const selectedParameter = parameters.find( ({ id }) =>  id === coupon.value )
 
-    const selectedParameter = parameters.find( ({ id }) => id === coupon.value )
-
-    selectedParameter.calcular()
+    typeof selectedParameter === 'undefined'
+        ? P.innerText = `El cupon no es valido`
+        : descuento.call(selectedParameter)
 }
