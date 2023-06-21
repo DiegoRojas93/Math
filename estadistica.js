@@ -1,4 +1,4 @@
-const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const list = [1, 2, 3, 4, 5, 10, 6, 7, 8, 9]
 
 function average(array) {
     
@@ -13,17 +13,21 @@ average(list)
 
 
 function median (array) {
-    let isEven = !(array.length % 2),
+
+    let orderedArray = array.sort((a ,b) => a - b),
+        isEven = !(orderedArray.length % 2),
         position,
         median;
 
+    console.log(orderedArray);
+
     if (isEven) {
-        position = Math.floor( array.length / 2 )
+        position = Math.floor( orderedArray.length / 2 )
         median = (position + (position + 1)) / 2
         console.log(median);
     } else {
-        position = Math.floor( array.length / 2 )
-        median = array[position];
+        position = Math.floor( orderedArray.length / 2 )
+        median = orderedArray[position];
         console.log(median);
     }
 }
