@@ -1,4 +1,4 @@
-const list = [1, 2, 3, 4, 5, 10, 6, 7, 8, 9]
+const lista = [1, 10, 14, 3, 24, 14, 10, 35, 12, 14]
 
 function average(array) {
     
@@ -6,10 +6,10 @@ function average(array) {
     
     const average = sum / array.length
     
-    // console.log(average);
+    console.log(average);
 }
 
-average(list)
+// average(list)
 
 
 function median (array) {
@@ -32,4 +32,24 @@ function median (array) {
     }
 }
 
-median(list)
+// median(list)
+
+function fashon (array) {
+
+    const storage = {};
+    
+    array.forEach( element => {
+        !storage[element] ? storage[element] = 1 : storage[element]++;
+    });
+
+    let rep = Object.values(storage),
+        memory = 0;
+
+    rep.forEach(num => {
+        if (num > memory) memory = num
+    });
+
+    console.log(memory);
+}
+
+fashon(lista)
