@@ -34,6 +34,7 @@ function median (array) {
 
 // median(list)
 
+
 function fashon (array) {
 
     const storage = {};
@@ -41,15 +42,14 @@ function fashon (array) {
     array.forEach( element => {
         !storage[element] ? storage[element] = 1 : storage[element]++;
     });
+    
+    const newArray = Object.entries(storage)
 
-    let rep = Object.values(storage),
-        memory = 0;
+    const list = newArray.sort(( a, b ) => a[1] - b[1])
 
-    rep.forEach(num => {
-        if (num > memory) memory = num
-    });
+    const data = list[ list.length - 1 ];
 
-    console.log(memory);
+    console.log(`La moda del array es el numero ${data[0]} debido a que repite ${data[1]} veces`);
 }
 
 fashon(lista)
