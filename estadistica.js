@@ -1,6 +1,8 @@
 const lista = [1, 10, 14, 3, 24, 14, 10, 35, 12, 14]
 
-function average(array) {
+const platziMath = {}
+
+platziMath.averiage = function average(array) {
     
     let sum = array.reduce((acum, value) => acum + value )
     
@@ -12,7 +14,7 @@ function average(array) {
 // average(list)
 
 
-function median (array) {
+platziMath.median = function median (array) {
 
     let orderedArray = array.sort((a ,b) => a - b),
         isEven = !(orderedArray.length % 2),
@@ -34,22 +36,23 @@ function median (array) {
 
 // median(list)
 
-
-function fashon (array) {
+platziMath.fashon = function fashon (array) {
 
     const storage = {};
     
     array.forEach( element => {
         !storage[element] ? storage[element] = 1 : storage[element]++;
     });
-    
-    const newArray = Object.entries(storage)
 
-    const list = newArray.sort(( a, b ) => a[1] - b[1])
+    let rep = Object.values(storage),
+        memory = 0;
 
-    const data = list[ list.length - 1 ];
+    rep.forEach( num => {
+        if (num > memory) memory = num
+    });
 
-    console.log(`La moda del array es el numero ${data[0]} debido a que repite ${data[1]} veces`);
+    console.log(memory);
+
 }
 
-fashon(lista)
+// fashon(lista)
