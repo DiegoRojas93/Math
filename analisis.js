@@ -48,14 +48,16 @@ function returnCompany (company) {
           
     // console.log('Salarios', salarios);
 
-    const persons = salarios.map( person => {
-        const { name, trabajos } = person;
-
+    const persons = salarios.map( ({ name, trabajos }) => {
+        
         for (const job of trabajos) {
-            if (job.empresa === company) return {
-                name
+            if (job.empresa === company) companies[`${job.year}`] = {
+                name,
+                salario: job.salario
             }
         }
+
+        return companies
     });
 
     console.log(persons);
