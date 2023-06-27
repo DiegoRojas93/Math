@@ -40,3 +40,23 @@ function screeningPerPerson (person) {
 
     return newSalary;
 }
+
+// Análisis empresarial
+
+function returnCompany (company) {
+    const companies = {};
+          
+    // console.log('Salarios', salarios);
+
+    const persons = salarios.map( person => {
+        const { name, trabajos } = person;
+
+        for (const job of trabajos) {
+            if (job.empresa === company) return {
+                name
+            }
+        }
+    });
+
+    console.log(persons);
+}
