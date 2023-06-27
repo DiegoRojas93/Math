@@ -8,7 +8,7 @@ platziMath.averiage = function average(array) {
     
     const average = sum / array.length
     
-    console.log(average);
+    return average
 }
 
 // average(list)
@@ -16,7 +16,7 @@ platziMath.averiage = function average(array) {
 
 platziMath.median = function median (array) {
 
-    let orderedArray = array.sort((a ,b) => a - b),
+    let orderedArray = array.sort((a, b) => a - b),
         isEven = !(orderedArray.length % 2),
         position,
         median;
@@ -25,12 +25,12 @@ platziMath.median = function median (array) {
 
     if (isEven) {
         position = Math.floor( orderedArray.length / 2 )
-        median = (position + (position + 1)) / 2
-        console.log(median);
+        median = (orderedArray[position] + orderedArray[(position - 1)]) / 2
+        return(median);
     } else {
         position = Math.floor( orderedArray.length / 2 )
         median = orderedArray[position];
-        console.log(median);
+        return(median);
     }
 }
 
@@ -51,8 +51,7 @@ platziMath.fashon = function fashon (array) {
         if (num > memory) memory = num
     });
 
-    console.log(memory);
-
+    return memory
 }
 
 // fashon(lista)
