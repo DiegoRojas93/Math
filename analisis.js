@@ -1,19 +1,23 @@
-console.log(salarios);
+console.log(`Salarios`,salarios);
 
 // Analisís de salarios de Juanita
 
 function findPerson (person) {
-    return salarios.find(({ name }) => person)
+    return salarios.find(({ name }) => name === person)
 }
 
 function medianPerPerson (person) {
     const trabajos = findPerson(person).trabajos
 
-    const salarios = trabajos.map(({ salario }) => salario )
+    // console.log(person, trabajos);
 
-    const medianSalaries = platziMath.median(salarios)
+    const listSalaries = trabajos.map(({ salario }) => salario )
 
-    console.log(medianSalaries);
+    // console.log(listSalaries);
+
+    const medianSalaries = platziMath.median(listSalaries)
+    
+    return medianSalaries
 }
 
 function screeningPerPerson (person) {
@@ -105,4 +109,14 @@ function screeningPerCompany(companyName){
 
     return newSalary;
     
+}
+
+// Análisis general
+
+function medianGeneral () {
+    const listMedians = salarios.map( ({name}) => medianPerPerson(name))
+
+    const median = platziMath.median(listMedians)
+
+    console.log(median)
 }

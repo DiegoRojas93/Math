@@ -23,13 +23,14 @@ platziMath.median = function median (array) {
 
     if (isEven) {
         position = Math.floor( orderedArray.length / 2 )
-        median = (orderedArray[position] + orderedArray[(position - 1)]) / 2
-        return(median);
+        median = (orderedArray[position] + orderedArray[position - 1]) / 2
+        return median;
     } else {
         position = Math.floor( orderedArray.length / 2 )
         median = orderedArray[position];
-        return(median);
+        return median;
     }
+
 }
 
 // median(list)
