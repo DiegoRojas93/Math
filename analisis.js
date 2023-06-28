@@ -62,12 +62,47 @@ function returnCompany () {
 function medianPerCompany (company, year) {
 
     const companies = returnCompany()
-
+    
     if (!companies[company]) console.warn(`La empresa no existe`)
     if (!companies[company][year]) console.warn(`La empresa no dio salarios ese año`)
-
+    
     const media = platziMath.median(companies[company][year]);
 
-    console.log(media);
+    return media
+    
+}
 
+// Proyeccion de salarios por empresa
+
+function screeningPerCompany(companyName){
+    const companies = returnCompany()
+
+    if (!companies[companyName]) return console.warn('La empresa no existe')
+
+    const companiesYears = Object.keys(companies[companyName])
+
+    const listMedianYears = companiesYears.map( year => medianPerCompany(companyName, year))
+
+    console.log(listMedianYears);
+
+
+    const percentGrowth = []
+
+    for(let i = 1; i < listMedianYears.length; i++){
+        const currentSalary = listMedianYears[i],
+              lastSalary = listMedianYears[i - 1],
+              growth = currentSalary - lastSalary,
+              percent = growth / lastSalary;
+        
+        percentGrowth.push(percent)
+    }
+
+    const medianPercentGrowth = platziMath.median(percentGrowth)
+    
+    const lastMedian = listMedianYears[listMedianYears.length - 1],
+    growth = medianPercentGrowth * lastMedian,
+    newSalary = growth + lastMedian;
+
+    return newSalary;
+    
 }

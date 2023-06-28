@@ -21,8 +21,6 @@ platziMath.median = function median (array) {
         position,
         median;
 
-    console.log(orderedArray);
-
     if (isEven) {
         position = Math.floor( orderedArray.length / 2 )
         median = (orderedArray[position] + orderedArray[(position - 1)]) / 2
