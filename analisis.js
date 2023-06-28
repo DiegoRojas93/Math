@@ -43,22 +43,31 @@ function screeningPerPerson (person) {
 
 // Análisis empresarial
 
-function returnCompany (company) {
+function returnCompany () {
     const companies = {};
           
-    // console.log('Salarios', salarios);
+    salarios.forEach(({trabajos}) => {
+        trabajos.forEach(({year, empresa, salario}) => {
+            if(!companies[empresa]) companies[empresa] = {}
 
-    const persons = salarios.map( ({ name, trabajos }) => {
-        
-        for (const job of trabajos) {
-            if (job.empresa === company) companies[`${job.year}`] = {
-                name,
-                salario: job.salario
-            }
-        }
+            if (!companies[empresa][year]) companies[empresa][year] = []
 
-        return companies
-    });
+            companies[empresa][year].push(salario)
+        });
+    });    
 
-    console.log(persons);
+    return companies
+}
+
+function medianPerCompany (company, year) {
+
+    const companies = returnCompany()
+
+    if (!companies[company]) console.warn(`La empresa no existe`)
+    if (!companies[company][year]) console.warn(`La empresa no dio salarios ese año`)
+
+    const media = platziMath.median(companies[company][year]);
+
+    console.log(media);
+
 }
