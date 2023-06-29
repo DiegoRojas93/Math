@@ -115,8 +115,22 @@ function screeningPerCompany(companyName){
 
 function medianGeneral () {
     const listMedians = salarios.map( ({name}) => medianPerPerson(name))
-
+    
     const median = platziMath.median(listMedians)
-
+    
     console.log(median)
+}
+
+function medianTop10Percent () {
+    const listMedians = salarios.map( ({name}) => medianPerPerson(name))
+
+    const listMediansOrdered = listMedians.sort((a, b) => a - b)
+
+    const acount = (listMediansOrdered.length * 10) / 100
+
+    const top10 = listMediansOrdered.slice(- acount)
+
+    const median = platziMath.median(top10)
+
+    return median
 }
